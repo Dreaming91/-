@@ -1,4 +1,4 @@
-package com.wsyd.myanimationview;
+package com.wsyd.myanimationviewgit;
 
 import org.junit.Test;
 

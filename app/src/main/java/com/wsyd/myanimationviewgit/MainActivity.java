@@ -1,4 +1,4 @@
-package com.wsyd.myanimationview;
+package com.wsyd.myanimationviewgit;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -7,7 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity  {
+public class MainActivity extends AppCompatActivity {
     private List<Integer> mIntegerList = new ArrayList<>();
 
     @Override
@@ -18,6 +18,8 @@ public class MainActivity extends AppCompatActivity  {
         mIntegerList.add(60);
         mIntegerList.add(60);
         view.setList(mIntegerList);
+        view.setSize(AnimationView.SMALL);
+        view.start();
 
     }
 

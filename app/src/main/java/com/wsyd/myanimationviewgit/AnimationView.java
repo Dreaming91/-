@@ -1,4 +1,4 @@
-package com.wsyd.myanimationview;
+package com.wsyd.myanimationviewgit;
 
 import android.content.Context;
 import android.graphics.Canvas;
@@ -9,7 +9,6 @@ import android.os.Handler;
 import android.os.Message;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.View;
 
 import java.util.ArrayList;
@@ -22,10 +21,12 @@ import java.util.Random;
 
 public class AnimationView extends View {
 
-    private RectF rectF;
     private List<Float> mPercentList = new ArrayList<>();
     private float tempPercent;
-    private Message mMessage = new Message();
+    public static final int SMALL = 7;
+    public static final int NORMAL = 5;
+    public static final int BIG = 3;
+    private int size = NORMAL;
     private Handler mHandler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
@@ -56,12 +57,13 @@ public class AnimationView extends View {
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
 
-        float baseLong = getWidth() / 5;
+        float baseLong = getWidth() / size;
+
         for (int i = 0; i < mPercentList.size(); i++) {
-            float percentLong1 = baseLong * mPercentList.get(i);
-            float percentLong2 = (baseLong * 4) * mPercentList.get(i);
-            float long1 = baseLong + percentLong1;
-            float long2 = (baseLong * 4) - percentLong2;
+//            float percentLong1 = baseLong * mPercentList.get(i);
+//            float percentLong2 = (baseLong * 4) * mPercentList.get(i);
+//            float long1 = baseLong + percentLong1;
+//            float long2 = (baseLong * 4) - percentLong2;
 
             RectF rectF = new RectF(baseLong, baseLong, baseLong * 4, baseLong * 4);
             Paint paint = new Paint();
@@ -69,23 +71,28 @@ public class AnimationView extends View {
             paint.setColor(RodomColor());
             canvas.drawArc(rectF, tempPercent, 360 * mPercentList.get(i), true, paint);
             tempPercent += (360 * mPercentList.get(i));
+
             float centerX = rectF.centerX();
             float centerY = rectF.centerY();
             Paint paintCircle = new Paint();
-            paintCircle.setColor(Color.rgb(255,255,255));
+            paintCircle.setColor(Color.rgb(255, 255, 255));
             canvas.drawCircle(centerX, centerY, baseLong / 3, paintCircle);
-            Log.i("testontest", "percent-->" + mPercentList.get(i) + " / baselong-->" + baseLong + " \n long1-->" + long1 + " / long2-->" + long2 + " / percentlong1-->" + percentLong1 + " / percentlong2-->" + percentLong2);
         }
 
 
     }
 
+    //炫彩
     private int RodomColor() {
         Random random = new Random();
         int nextInt1 = random.nextInt(255);
         int nextInt2 = random.nextInt(255);
         int nextInt3 = random.nextInt(255);
         return Color.rgb(nextInt1, nextInt2, nextInt3);
+    }
+
+    public void setSize(int size) {
+        this.size = size;
     }
 
     public void setList(List<Integer> list) {
@@ -99,6 +106,9 @@ public class AnimationView extends View {
             float percent = (float) integer / (float) all;
             mPercentList.add(percent);
         }
+    }
+
+    public void start() {
         mHandler.sendEmptyMessage(10);
         invalidate();
     }

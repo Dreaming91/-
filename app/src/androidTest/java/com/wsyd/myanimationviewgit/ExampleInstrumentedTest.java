@@ -1,4 +1,4 @@
-package com.wsyd.myanimationview;
+package com.wsyd.myanimationviewgit;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;

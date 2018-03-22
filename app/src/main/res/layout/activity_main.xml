@@ -5,10 +5,10 @@
     android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.wsyd.myanimationview.MainActivity">
+    tools:context="com.wsyd.myanimationviewgit.MainActivity">
 
 
-    <com.wsyd.myanimationview.AnimationView
+    <com.wsyd.myanimationviewgit.AnimationView
     android:id="@+id/view"
     android:layout_width="match_parent"
     android:layout_height="match_parent"/>
