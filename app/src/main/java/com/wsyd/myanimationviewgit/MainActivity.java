@@ -17,6 +17,13 @@ public class MainActivity extends AppCompatActivity {
         AnimationView view = findViewById(R.id.view);
         mIntegerList.add(60);
         mIntegerList.add(60);
+        mIntegerList.add(60);
+        mIntegerList.add(60);
+        mIntegerList.add(60);
+        mIntegerList.add(60);
+        mIntegerList.add(60);
+        mIntegerList.add(60);
+        mIntegerList.add(60);
         view.setList(mIntegerList);
         view.setSize(AnimationView.SMALL);
         view.start();

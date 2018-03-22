@@ -37,6 +37,7 @@ public class AnimationView extends View {
             }
         }
     };
+    private float mBaseLong;
 
 
     public AnimationView(Context context) {
@@ -52,20 +53,25 @@ public class AnimationView extends View {
 
     }
 
+    @Override
+    protected void onLayout(boolean changed, int left, int top, int right, int bottom) {
+        super.onLayout(changed, left, top, right, bottom);
+        mBaseLong = getMeasuredWidth() / size;
+    }
 
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
 
-        float baseLong = getWidth() / size;
 
         for (int i = 0; i < mPercentList.size(); i++) {
+
 //            float percentLong1 = baseLong * mPercentList.get(i);
 //            float percentLong2 = (baseLong * 4) * mPercentList.get(i);
 //            float long1 = baseLong + percentLong1;
 //            float long2 = (baseLong * 4) - percentLong2;
 
-            RectF rectF = new RectF(baseLong, baseLong, baseLong * 4, baseLong * 4);
+            RectF rectF = new RectF(mBaseLong, mBaseLong, mBaseLong * 4, mBaseLong * 4);
             Paint paint = new Paint();
             paint.setAntiAlias(true);
             paint.setColor(RodomColor());
@@ -76,7 +82,7 @@ public class AnimationView extends View {
             float centerY = rectF.centerY();
             Paint paintCircle = new Paint();
             paintCircle.setColor(Color.rgb(255, 255, 255));
-            canvas.drawCircle(centerX, centerY, baseLong / 3, paintCircle);
+            canvas.drawCircle(centerX, centerY, mBaseLong / 3, paintCircle);
         }
 
 
